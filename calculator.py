@@ -1,6 +1,9 @@
 from tkinter import *
 from tkinter import ttk
 
+# This file will at some point be a functioning gui calculator. 
+# As of now it does nothing
+
 screen = []
 
 def add_to_screen(i):
