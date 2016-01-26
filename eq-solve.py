@@ -3,6 +3,8 @@ import numpy.linalg as la
 import scipy.linalg as sla
 import timeit 
 
+# This file provides many different methods for solving Ax=b
+
 def qrsolve(a,b):
 	q, r = la.qr(a,mode='reduced')
 	return np.dot(np.dot(la.inv(r),la.inv(q)),b)
