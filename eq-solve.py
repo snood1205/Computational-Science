@@ -5,25 +5,31 @@ import timeit
 
 # This file provides many different methods for solving Ax=b
 
+# Economy QR Decomposition
 def qrsolve(a,b):
 	q, r = la.qr(a,mode='reduced')
 	return np.dot(np.dot(la.inv(r),la.inv(q)),b)
 
+# LU (non-pivot) Decomposition
 def lusolve(a,b):
 	l, u = sla.lu(a,permute_l=True)
 	return np.dot(np.dot(la.inv(u),la.inv(l)),b)
 
+# Regular inverse solve
 def solve(a,b):
 	return np.dot(la.inv(a),b)
 
+# Cholesky Factorization Solution (Only works for Singular Positive Definite Matrices)
 def chsolve(a,b):
 	u = sla.cholesky(a)
 	return np.dot(np.dot(u,u.T),b)
 
+# Polar Factorization Solve
 def psolve(a,b):
 	u,p  = sla.polar(a);
 	return np.dot(np.dot(la.inv(p),la.inv(u)),b)
 
+# Built in solver
 def pro(a,b):
 	return la.solve(a,b)
 
