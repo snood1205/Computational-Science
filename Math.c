@@ -36,6 +36,14 @@ long lmaxa(long a[], int length);
 float flmaxa(float a[], int length);
 double dmaxa(double a[], int length);
 long double ldmaxa(long double a[], int length);
+/* Sorts */
+char * chbubblesort(char a[], int length);
+int * ibubblesort(int a[], int length);
+short * sbubblesort(short a[], int length);
+long * lbubblesort(long a[], int length);
+float * flbubblesort(float a[], int length);
+double * dbubblesort(double a[], int length);
+long double * ldbubblesort(long double a[], int length);
 /* Misc */
 int order_of_magnitude(double n);
 double inv(double n);
@@ -122,6 +130,344 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
+/* Binary Comparators */
+char chmin(char a, char b)
+{
+	return a < b ? a : b;
+}
+
+int imin(int a, int b)
+{
+	return a < b ? a : b;
+}
+
+short smin(short a, short b)
+{
+	return a < b ? a : b;
+}
+
+long lmin(long a, long b)
+{
+	return a < b ? a : b;
+}
+
+float flmin(float a, float b)
+{
+	return a < b ? a : b;
+}
+
+double dmin(double a, double b)
+{
+	return a < b ? a : b;
+}
+
+long double ldmin(long double a, long double b)
+{
+	return a < b ? a : b;
+}
+
+char chmax(char a, char b)
+{
+	return a > b ? a : b;
+}
+
+int imax(int a, int b)
+{
+	return a > b ? a : b;
+}
+
+short smax(short a, short b)
+{
+	return a > b ? a : b;
+}
+
+long lmax(long a, long b)
+{
+	return a > b ? a : b;
+}
+
+float flmax(float a, float b)
+{
+	return a > b ? a : b;
+}
+
+double dmax(double a, double b)
+{
+	return a > b ? a : b;
+}
+
+long double ldmax(long double a, long double b)
+{
+	return a > b ? a : b;
+}
+
+/* Array Comparators */
+char chmina(char a[], int length)
+{
+	char min = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		min = chmin(min, a[i]);
+	}
+	return min;
+}
+
+int imina(int a[], int length)
+{
+	int min = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		min = imin(min, a[i]);
+	}
+	return min;
+}
+
+short smina(short a[], int length)
+{
+	short min = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		min = smin(min, a[i]);
+	}
+	return min;
+}
+
+long lmina(long a[], int length)
+{
+	long min = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		min = lmin(min, a[i]);
+	}
+	return min;
+}
+
+float flmina(float a[], int length)
+{
+	float min = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		min = flmin(min, a[i]);
+	}
+	return min;
+}
+
+double dmina(double a[], int length)
+{
+	double min = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		min = dmin(min, a[i]);
+	}
+	return min;
+}
+
+long double ldmina(long double a[], int length)
+{
+	long double min = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		min = ldmin(min, a[i]);
+	}
+	return min;
+}
+
+char chmaxa(char a[], int length)
+{
+	char max = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		max = chmax(max, a[i]);
+	}
+	return max;
+}
+
+int imaxa(int a[], int length)
+{
+	int max = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		max = imax(max, a[i]);
+	}
+	return max;
+}
+
+short smaxa(short a[], int length)
+{
+	short max = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		max = smax(max, a[i]);
+	}
+	return max;
+}
+
+long lmaxa(long a[], int length)
+{
+	long max = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		max = lmax(max, a[i]);
+	}
+	return max;
+}
+
+float flmaxa(float a[], int length)
+{
+	float max = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		max = flmax(max, a[i]);
+	}
+	return max;
+}
+
+double dmaxa(double a[], int length)
+{
+	double max = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		max = dmax(max, a[i]);
+	}
+	return max;
+}
+
+long double ldmaxa(long double a[], int length)
+{
+	long double max = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		max = ldmax(max, a[i]);
+	}
+	return max;
+}
+
+/* Sorts */
+char * chbubblesort(char a[], int length)
+{
+	char temp;
+	for(int i = 0; i < length; i++)
+	{
+		for(int j = 1; j < length - i; j++)
+		{
+			if(a[j] < a[j - 1])
+			{
+				temp = a[j];
+				a[j] = a[j-1];
+				a[j-1] = temp;
+			}
+		}
+	}
+	return a;
+}
+
+int * ibubblesort(int a[], int length)
+{
+	int temp;
+	for(int i = 0; i < length; i++)
+	{
+		for(int j = 1; j < length - i; j++)
+		{
+			if(a[j] < a[j - 1])
+			{
+				temp = a[j];
+				a[j] = a[j-1];
+				a[j-1] = temp;
+			}
+		}
+	}
+	return a;
+}
+
+short * sbubblesort(short a[], int length)
+{
+	short temp;
+	for(int i = 0; i < length; i++)
+	{
+		for(int j = 1; j < length - i; j++)
+		{
+			if(a[j] < a[j - 1])
+			{
+				temp = a[j];
+				a[j] = a[j-1];
+				a[j-1] = temp;
+			}
+		}
+	}
+	return a;
+}
+
+long * lbubblesort(long a[], int length)
+{
+	long temp;
+	for(int i = 0; i < length; i++)
+	{
+		for(int j = 1; j < length - i; j++)
+		{
+			if(a[j] < a[j - 1])
+			{
+				temp = a[j];
+				a[j] = a[j-1];
+				a[j-1] = temp;
+			}
+		}
+	}
+	return a;
+}
+
+float * flbubblesort(float a[], int length)
+{
+	float temp;
+	for(int i = 0; i < length; i++)
+	{
+		for(int j = 1; j < length - i; j++)
+		{
+			if(a[j] < a[j - 1])
+			{
+				temp = a[j];
+				a[j] = a[j-1];
+				a[j-1] = temp;
+			}
+		}
+	}
+	return a;
+}
+
+double * dbubblesort(double a[], int length)
+{
+	double temp;
+	for(int i = 0; i < length; i++)
+	{
+		for(int j = 1; j < length - i; j++)
+		{
+			if(a[j] < a[j - 1])
+			{
+				temp = a[j];
+				a[j] = a[j-1];
+				a[j-1] = temp;
+			}
+		}
+	}
+	return a;
+}
+
+long double * ldbubblesort(long double a[], int length)
+{
+	long double temp;
+	for(int i = 0; i < length; i++)
+	{
+		for(int j = 1; j < length - i; j++)
+		{
+			if(a[j] < a[j - 1])
+			{
+				temp = a[j];
+				a[j] = a[j-1];
+				a[j-1] = temp;
+			}
+		}
+	}
+	return a;
+}
 /* Miscellaneous Functions */
 int order_of_magnitude(double n)
 {
@@ -702,216 +1048,4 @@ int implies(int a, int b)
 int iff(int a, int b)
 {
 	return xnor(a,b);
-}
-
-/* Binary Comparators */
-char chmin(char a, char b)
-{
-	return a < b ? a : b;
-}
-
-int imin(int a, int b)
-{
-	return a < b ? a : b;
-}
-
-short smin(short a, short b)
-{
-	return a < b ? a : b;
-}
-
-long lmin(long a, long b)
-{
-	return a < b ? a : b;
-}
-
-float flmin(float a, float b)
-{
-	return a < b ? a : b;
-}
-
-double dmin(double a, double b)
-{
-	return a < b ? a : b;
-}
-
-long double ldmin(long double a, long double b)
-{
-	return a < b ? a : b;
-}
-
-char chmax(char a, char b)
-{
-	return a > b ? a : b;
-}
-
-int imax(int a, int b)
-{
-	return a > b ? a : b;
-}
-
-short smax(short a, short b)
-{
-	return a > b ? a : b;
-}
-
-long lmax(long a, long b)
-{
-	return a > b ? a : b;
-}
-
-float flmax(float a, float b)
-{
-	return a > b ? a : b;
-}
-
-double dmax(double a, double b)
-{
-	return a > b ? a : b;
-}
-
-long double ldmax(long double a, long double b)
-{
-	return a > b ? a : b;
-}
-
-/* Array Comparators */
-char chmina(char a[], int length)
-{
-	char min = a[0];
-	for(int i = 0; i < length; i++)
-	{
-		min = chmin(min, a[i]);
-	}
-	return min;
-}
-
-int imina(int a[], int length)
-{
-	int min = a[0];
-	for(int i = 0; i < length; i++)
-	{
-		min = imin(min, a[i]);
-	}
-	return min;
-}
-
-short smina(short a[], int length)
-{
-	short min = a[0];
-	for(int i = 0; i < length; i++)
-	{
-		min = smin(min, a[i]);
-	}
-	return min;
-}
-
-long lmina(long a[], int length)
-{
-	long min = a[0];
-	for(int i = 0; i < length; i++)
-	{
-		min = lmin(min, a[i]);
-	}
-	return min;
-}
-
-float flmina(float a[], int length)
-{
-	float min = a[0];
-	for(int i = 0; i < length; i++)
-	{
-		min = flmin(min, a[i]);
-	}
-	return min;
-}
-
-double dmina(double a[], int length)
-{
-	double min = a[0];
-	for(int i = 0; i < length; i++)
-	{
-		min = dmin(min, a[i]);
-	}
-	return min;
-}
-
-long double ldmina(long double a[], int length)
-{
-	long double min = a[0];
-	for(int i = 0; i < length; i++)
-	{
-		min = ldmin(min, a[i]);
-	}
-	return min;
-}
-
-char chmaxa(char a[], int length)
-{
-	char max = a[0];
-	for(int i = 0; i < length; i++)
-	{
-		max = chmax(max, a[i]);
-	}
-	return max;
-}
-
-int imaxa(int a[], int length)
-{
-	int max = a[0];
-	for(int i = 0; i < length; i++)
-	{
-		max = imax(max, a[i]);
-	}
-	return max;
-}
-
-short smaxa(short a[], int length)
-{
-	short max = a[0];
-	for(int i = 0; i < length; i++)
-	{
-		max = smax(max, a[i]);
-	}
-	return max;
-}
-
-long lmaxa(long a[], int length)
-{
-	long max = a[0];
-	for(int i = 0; i < length; i++)
-	{
-		max = lmax(max, a[i]);
-	}
-	return max;
-}
-
-float flmaxa(float a[], int length)
-{
-	float max = a[0];
-	for(int i = 0; i < length; i++)
-	{
-		max = flmax(max, a[i]);
-	}
-	return max;
-}
-
-double dmaxa(double a[], int length)
-{
-	double max = a[0];
-	for(int i = 0; i < length; i++)
-	{
-		max = dmax(max, a[i]);
-	}
-	return max;
-}
-
-long double ldmaxa(long double a[], int length)
-{
-	long double max = a[0];
-	for(int i = 0; i < length; i++)
-	{
-		max = ldmax(max, a[i]);
-	}
-	return max;
 }
