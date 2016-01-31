@@ -16,6 +16,7 @@ double mod(double a, double b);
 double dpow(double a, int b);
 double surd(double x, int n);
 double root(double x, int n);
+double sqrt(double n);
 double exp(double n);
 double ln(double n);
 double logn(double n, double b);
@@ -56,7 +57,13 @@ double arcsec(double n);
 double aoffsec(double n, int offset);
 double arccsc(double n);
 double aoffcsc(double n, int offset); 
-
+/* Inv. Hyp. Trig */
+double arcsinh(double n);
+double arccosh(double n);
+double arctanh(double n);
+double arccoth(double n);
+double arcsech(double n);
+double arccsch(double n);
 
 int main(int argc, char *argv[])
 {
@@ -204,6 +211,11 @@ double surd(double x, int n)
 double root(double x, int n)
 {
 	return surd(x,n);
+}
+
+double sqrt(double n)
+{
+	return surd(n,2);
 }
 
 double exp(double n)
@@ -515,4 +527,47 @@ double arccsc(double n)
 double aoffcsc(double n, int offset)
 {
 	return arccsc(n) + 2*PI*offset;
+}
+
+double arcsinh(double n)
+{
+	return ln(n + sqrt(1 + n*n));
+}
+
+double arccosh(double n)
+{
+	return ln(n + sqrt(n*n - 1));
+}
+
+double arctanh(double n)
+{
+	if(n < -1 || n > 1)
+	{
+		return NaN;
+	}
+	double sum = 0;
+	for(int i = 1; i < 100; i++)
+	{
+		sum += dpow(n,2*i-1)/(2*i-1);
+	}
+	return sum;
+}
+
+double arccoth(double n)
+{
+	if(n > -1 && n < 1)
+	{
+		return NaN;
+	}
+	return arctanh(1/n);
+}
+
+double arcsech(double n)
+{
+	return arccosh(1/n);
+}
+
+double arccsch(double n)
+{
+	return arcsinh(1/n);
 }
