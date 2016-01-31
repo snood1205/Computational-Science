@@ -6,6 +6,36 @@
 #define NaN 0./0.
 
 /* Function Declarations */
+/* Binary Comp. */
+char chmin(char a, char b);
+int imin(int a, int b);
+short smin(short a, short b);
+long lmin(long a, long b);
+float flmin(float a, float b);
+double dmin(double a, double b);
+long double ldmin(long double a, long double b);
+char chmax(char a, char b);
+int imax(int a, int b);
+short smax(short a, short b);
+long lmax(long a, long b);
+float flmax(float a, float b);
+double dmax(double a, double b);
+long double ldmax(long double a, long double b);
+/* Array Comp */
+char chmina(char a[], int length);
+int imina(int a[], int length);
+short smina(short a[], int length);
+long lmina(long a[], int length);
+float flmina(float a[], int length);
+double dmina(double a[], int length);
+long double ldmina(long double a[], int length);
+char chmaxa(char a[], int length);
+int imaxa(int a[], int length);
+short smaxa(short a[], int length);
+long lmaxa(long a[], int length);
+float flmaxa(float a[], int length);
+double dmaxa(double a[], int length);
+long double ldmaxa(long double a[], int length);
 /* Misc */
 int order_of_magnitude(double n);
 double inv(double n);
@@ -64,6 +94,20 @@ double arctanh(double n);
 double arccoth(double n);
 double arcsech(double n);
 double arccsch(double n);
+/* Logic */
+int f(int a);
+int identity(int a);
+int not(int a);
+int t(int a);
+int and(int a, int b);
+int or(int a, int b);
+int nand(int a, int b);
+int nor(int a, int b);
+int xor(int a, int b);
+int xnor(int a, int b);
+int implies(int a, int b);
+int iff(int a, int b);
+
 
 int main(int argc, char *argv[])
 {
@@ -529,6 +573,7 @@ double aoffcsc(double n, int offset)
 	return arccsc(n) + 2*PI*offset;
 }
 
+/* Inverse Hyperbolic Trigonometric Functions */
 double arcsinh(double n)
 {
 	return ln(n + sqrt(1 + n*n));
@@ -570,4 +615,303 @@ double arcsech(double n)
 double arccsch(double n)
 {
 	return arcsinh(1/n);
+}
+
+/* Logical Operations */
+/* Unary Operations */
+int f(int a)
+{
+	return false;
+}
+
+int identity(int a)
+{
+	return a;
+}
+
+int not(int a)
+{
+	if(a)
+	{
+		return false;
+	}
+	return true;
+}
+
+int t(int a)
+{
+	return true;
+}
+
+/* Binary Operations */
+int and(int a, int b)
+{
+	if(a && b)
+	{
+		return true;
+	}
+	return false;
+}
+
+int or(int a, int b)
+{
+	if(a || b)
+	{
+		return true;
+	}
+	return false;
+}
+
+int nand(int a, int b)
+{
+	return not(and(a,b));
+}
+
+int nor(int a, int b)
+{
+	return not(or(a,b));
+}
+
+int xor(int a, int b)
+{
+	if(a != b)
+	{
+		return true;
+	}
+	return false;
+}
+
+int xnor(int a, int b)
+{
+	if(a == b)
+	{
+		return true;
+	}
+	return false;
+}
+
+int implies(int a, int b)
+{
+	if(a && !b)
+	{
+		return false;
+	}
+	return true;
+}
+
+int iff(int a, int b)
+{
+	return xnor(a,b);
+}
+
+/* Binary Comparators */
+char chmin(char a, char b)
+{
+	return a < b ? a : b;
+}
+
+int imin(int a, int b)
+{
+	return a < b ? a : b;
+}
+
+short smin(short a, short b)
+{
+	return a < b ? a : b;
+}
+
+long lmin(long a, long b)
+{
+	return a < b ? a : b;
+}
+
+float flmin(float a, float b)
+{
+	return a < b ? a : b;
+}
+
+double dmin(double a, double b)
+{
+	return a < b ? a : b;
+}
+
+long double ldmin(long double a, long double b)
+{
+	return a < b ? a : b;
+}
+
+char chmax(char a, char b)
+{
+	return a > b ? a : b;
+}
+
+int imax(int a, int b)
+{
+	return a > b ? a : b;
+}
+
+short smax(short a, short b)
+{
+	return a > b ? a : b;
+}
+
+long lmax(long a, long b)
+{
+	return a > b ? a : b;
+}
+
+float flmax(float a, float b)
+{
+	return a > b ? a : b;
+}
+
+double dmax(double a, double b)
+{
+	return a > b ? a : b;
+}
+
+long double ldmax(long double a, long double b)
+{
+	return a > b ? a : b;
+}
+
+/* Array Comparators */
+char chmina(char a[], int length)
+{
+	char min = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		min = chmin(min, a[i]);
+	}
+	return min;
+}
+
+int imina(int a[], int length)
+{
+	int min = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		min = imin(min, a[i]);
+	}
+	return min;
+}
+
+short smina(short a[], int length)
+{
+	short min = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		min = smin(min, a[i]);
+	}
+	return min;
+}
+
+long lmina(long a[], int length)
+{
+	long min = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		min = lmin(min, a[i]);
+	}
+	return min;
+}
+
+float flmina(float a[], int length)
+{
+	float min = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		min = flmin(min, a[i]);
+	}
+	return min;
+}
+
+double dmina(double a[], int length)
+{
+	double min = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		min = dmin(min, a[i]);
+	}
+	return min;
+}
+
+long double ldmina(long double a[], int length)
+{
+	long double min = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		min = ldmin(min, a[i]);
+	}
+	return min;
+}
+
+char chmaxa(char a[], int length)
+{
+	char max = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		max = chmax(max, a[i]);
+	}
+	return max;
+}
+
+int imaxa(int a[], int length)
+{
+	int max = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		max = imax(max, a[i]);
+	}
+	return max;
+}
+
+short smaxa(short a[], int length)
+{
+	short max = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		max = smax(max, a[i]);
+	}
+	return max;
+}
+
+long lmaxa(long a[], int length)
+{
+	long max = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		max = lmax(max, a[i]);
+	}
+	return max;
+}
+
+float flmaxa(float a[], int length)
+{
+	float max = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		max = flmax(max, a[i]);
+	}
+	return max;
+}
+
+double dmaxa(double a[], int length)
+{
+	double max = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		max = dmax(max, a[i]);
+	}
+	return max;
+}
+
+long double ldmaxa(long double a[], int length)
+{
+	long double max = a[0];
+	for(int i = 0; i < length; i++)
+	{
+		max = ldmax(max, a[i]);
+	}
+	return max;
 }
