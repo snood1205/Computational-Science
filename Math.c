@@ -7,6 +7,7 @@
 
 /* Function Declarations */
 /* Misc */
+double inv(double n);
 unsigned long fact(unsigned int a);
 long ffact(int a);
 double mod(double a, double);
@@ -16,7 +17,7 @@ double surd(int x, int n);
 double root(int x, int n);
 double exp(double n);
 double ln(double n);
-double log(double n, double b);
+double logn(double n, double b);
 double log10(double n);
 double log2(double n);
 /* Abs */
@@ -43,33 +44,48 @@ double sech(double n);
 double csch(double n);
 /* Inv. Trig */
 double arcsin(double n);
-double asin(double n, int offset);
+double asin2(double n, int offset);
 double arccos(double n);
-double acos(double n, int offset);
+double acos2(double n, int offset);
 double arctan(double n);
-double atan(double n, int offset);
+double atan3(double n, int offset);
 double arccot(double n);
-double acot(double n, int offset);
+double acot2(double n, int offset);
 double arcsec(double n);
-double asec(double n, int offset);
+double asec2(double n, int offset);
 double arccsc(double n);
-double acsc(double n, int offset); 
+double acsc2(double n, int offset); 
 
 
 int main(int argc, char *argv[])
 {
-	FILE *f = fopen("sinh.txt", "w");
+	FILE *f = fopen("inv.txt", "w");
 
 
-	for(double i = -10; i <= 10; i += 0.01)
+	for(double i = 0; i <= 1000; i ++)
 	{
-		fprintf(f, "%.16G\t%.16G\n", i, sinh(i));
+		fprintf(f, "%.16G\t%.16G\n", i, inv(i));
 	}
 	fclose(f);
 	return 0;
 }
 
 /* Misc. Functions */
+double inv(double n)
+{
+	double x0 = n*0.001;
+	double xp = x0;
+	double atol = 1;
+	double xn;
+	while(dabs(atol) > 1e-10)
+	{
+		xn = xp + xp*(1-n*xp);
+		atol = xn - xp;
+		xp = xn;
+	}
+	return xp;
+}
+
 unsigned long fact(unsigned int a)
 {
 	if(a == 0 || a == 1)
@@ -93,7 +109,7 @@ long ffact(int a)
 		{
 			prod *= i;
 		}
-		return prod
+		return prod;
 	}
 	long prod = 1;
 	for(int i = 3; i <= a; i += 2)
@@ -195,19 +211,19 @@ double ln(double n)
 	return sum;
 }
 
-double log(double n, double b)
+double logn(double n, double b)
 {
 	return ln(n)/ln(b);
 }
 
 double log10(double n)
 {
-	return log(n,10);
+	return logn(n,10);
 }
 
 double log2(double n)
 {
-	return log(n,2);
+	return logn(n,2);
 }
 
 /* Absolute Values */
@@ -426,7 +442,7 @@ double arcsin(double n)
 	return sum;
 }
 
-double asin(double n, int offset)
+double asin2(double n, int offset)
 {
 	return arcsin(n) + 2*PI*offset;
 }
@@ -436,7 +452,7 @@ double arccos(double n)
 	return PI/2 - arcsin(n);
 }
 
-double acos(double n, int offset)
+double acos2(double n, int offset)
 {
 	return arccos(n) + 2*PI*offset;
 }
@@ -451,7 +467,7 @@ double arctan(double n)
 	return sum;
 }
 
-double atan(double n, int offset)
+double atan3(double n, int offset)
 {
 	return arctan(n) + 2*PI*offset;
 }
@@ -461,7 +477,7 @@ double arccot(double n)
 	return PI/2 - arctan(n);
 }
 
-double acot(double n, int offset)
+double acot2(double n, int offset)
 {
 	return arccot(n) + 2*PI*offset;
 }
@@ -471,7 +487,7 @@ double arcsec(double n)
 	return arccos(1/n);
 }
 
-double asec(double n, int offset)
+double asec2(double n, int offset)
 {
 	return arcsec(n) + 2*PI*offset;
 }
@@ -481,7 +497,7 @@ double arccsc(double n)
 	return arcsin(1/n);
 }
 
-double acsc(double n, int offset)
+double acsc2(double n, int offset)
 {
 	return arccsc(n) + 2*PI*offset;
 }
