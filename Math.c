@@ -12,6 +12,7 @@ double mod(double a, double);
 
 double dpow(double a, int b);
 double surd(int x, int n);
+double root(int x, int n);
 
 char chabs(char n);
 int iabs(int n);
@@ -161,6 +162,11 @@ double surd(int x, int n)
 		xp = xn;
 	}
 	return xp;
+}
+
+double root(int x, int n)
+{
+	return surd(x,n);
 }
 
 /* Absolute Values */
