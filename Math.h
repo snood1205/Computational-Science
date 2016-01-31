@@ -1,4 +1,3 @@
-#include <stdio.h>
 #define PI  3.14159265358979323846
 #define E   2.71828182845904523536
 #define true 1
@@ -115,20 +114,6 @@ int xor(int a, int b);
 int xnor(int a, int b);
 int implies(int a, int b);
 int iff(int a, int b);
-
-
-int main(int argc, char *argv[])
-{
-	FILE *f = fopen("inv.txt", "w");
-
-
-	for(double i = 0; i <= 1000; i ++)
-	{
-		fprintf(f, "%.16G\t%.16G\n", i, inv(i));
-	}
-	fclose(f);
-	return 0;
-}
 
 /* Binary Comparators */
 char chmin(char a, char b)
