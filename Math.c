@@ -6,14 +6,20 @@
 #define NaN 0./0.
 
 /* Function Declarations */
+/* Misc */
 unsigned long fact(unsigned int a);
 long ffact(int a);
 double mod(double a, double);
-
+/* Exp */
 double dpow(double a, int b);
 double surd(int x, int n);
 double root(int x, int n);
-
+double exp(double n);
+double ln(double n);
+double log(double n, double b);
+double log10(double n);
+double log2(double n);
+/* Abs */
 char chabs(char n);
 int iabs(int n);
 short sabs(short n);
@@ -21,21 +27,21 @@ long labs(long n);
 float flabs(float n);
 double dabs(double n);
 long double ldabs(long double n);
-
+/* Trig */
 double sin(double n);
 double cos(double n);
 double tan(double n);
 double cot(double n);
 double sec(double n);
 double csc(double n); 
-
+/* Hyp. Trig */
 double sinh(double n);
 double cosh(double n);
 double tanh(double n);
 double coth(double n);
 double sech(double n);
 double csch(double n);
-
+/* Inv. Trig */
 double arcsin(double n);
 double asin(double n, int offset);
 double arccos(double n);
@@ -167,6 +173,41 @@ double surd(int x, int n)
 double root(int x, int n)
 {
 	return surd(x,n);
+}
+
+double exp(double n)
+{
+	double sum = 0;
+	for(int i = 0; i <= 50; i++)
+	{
+		sum += dpow(n, i)/fact(i);
+	}
+	return sum;
+}
+
+double ln(double n)
+{
+	double sum = 0;
+	for(int i = 1; i <= 50; i++)
+	{
+		 sum += dpow(-1,i)*dpow(n-1,i)/(double)i;
+	}
+	return sum;
+}
+
+double log(double n, double b)
+{
+	return ln(n)/ln(b);
+}
+
+double log10(double n)
+{
+	return log(n,10);
+}
+
+double log2(double n)
+{
+	return log(n,2);
 }
 
 /* Absolute Values */
