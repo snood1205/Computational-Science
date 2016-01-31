@@ -7,14 +7,15 @@
 
 /* Function Declarations */
 /* Misc */
+int order_of_magnitude(double n);
 double inv(double n);
 unsigned long fact(unsigned int a);
 long ffact(int a);
-double mod(double a, double);
+double mod(double a, double b);
 /* Exp */
 double dpow(double a, int b);
-double surd(int x, int n);
-double root(int x, int n);
+double surd(double x, int n);
+double root(double x, int n);
 double exp(double n);
 double ln(double n);
 double logn(double n, double b);
@@ -44,17 +45,17 @@ double sech(double n);
 double csch(double n);
 /* Inv. Trig */
 double arcsin(double n);
-double asin2(double n, int offset);
+double aoffsin(double n, int offset);
 double arccos(double n);
-double acos2(double n, int offset);
+double aoffcos(double n, int offset);
 double arctan(double n);
-double atan3(double n, int offset);
+double aofftan(double n, int offset);
 double arccot(double n);
-double acot2(double n, int offset);
+double aoffcot(double n, int offset);
 double arcsec(double n);
-double asec2(double n, int offset);
+double aoffsec(double n, int offset);
 double arccsc(double n);
-double acsc2(double n, int offset); 
+double aoffcsc(double n, int offset); 
 
 
 int main(int argc, char *argv[])
@@ -70,10 +71,24 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-/* Misc. Functions */
+/* Miscellaneous Functions */
+int order_of_magnitude(double n)
+{
+	int int_n = (int) n;
+	int prod = 1;
+	for(int i = 0; ;i++)
+	{
+		prod *= 0.1;
+		if(int_n * prod < 10)
+		{
+			return i;
+		}
+	}
+}
+
 double inv(double n)
 {
-	double x0 = n*0.001;
+	double x0 = n*0.283*order_of_magnitude(n);
 	double xp = x0;
 	double atol = 1;
 	double xn;
@@ -160,7 +175,7 @@ double dpow(double a, int b)
 	return prod;
 }
 
-double surd(int x, int n)
+double surd(double x, int n)
 {
 	int im = false;
 	int neg = false;
@@ -174,8 +189,8 @@ double surd(int x, int n)
 		neg = true;
 		x *= -1;
 	}
-	double xp = (double) x /((double) n);
-	double x0 = (double) x;
+	double xp = x /((double) n);
+	double x0 = x;
 	double atol = 1;
 	while(dabs(atol) > 1e-10)
 	{
@@ -186,7 +201,7 @@ double surd(int x, int n)
 	return xp;
 }
 
-double root(int x, int n)
+double root(double x, int n)
 {
 	return surd(x,n);
 }
@@ -442,7 +457,7 @@ double arcsin(double n)
 	return sum;
 }
 
-double asin2(double n, int offset)
+double aoffsin(double n, int offset)
 {
 	return arcsin(n) + 2*PI*offset;
 }
@@ -452,7 +467,7 @@ double arccos(double n)
 	return PI/2 - arcsin(n);
 }
 
-double acos2(double n, int offset)
+double aoffcos(double n, int offset)
 {
 	return arccos(n) + 2*PI*offset;
 }
@@ -467,7 +482,7 @@ double arctan(double n)
 	return sum;
 }
 
-double atan3(double n, int offset)
+double aofftan(double n, int offset)
 {
 	return arctan(n) + 2*PI*offset;
 }
@@ -477,7 +492,7 @@ double arccot(double n)
 	return PI/2 - arctan(n);
 }
 
-double acot2(double n, int offset)
+double aoffcot(double n, int offset)
 {
 	return arccot(n) + 2*PI*offset;
 }
@@ -487,7 +502,7 @@ double arcsec(double n)
 	return arccos(1/n);
 }
 
-double asec2(double n, int offset)
+double aoffsec(double n, int offset)
 {
 	return arcsec(n) + 2*PI*offset;
 }
@@ -497,7 +512,7 @@ double arccsc(double n)
 	return arcsin(1/n);
 }
 
-double acsc2(double n, int offset)
+double aoffcsc(double n, int offset)
 {
 	return arccsc(n) + 2*PI*offset;
 }
