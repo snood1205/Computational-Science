@@ -43,6 +43,13 @@ long * lbubblesort(long a[], int length);
 float * flbubblesort(float a[], int length);
 double * dbubblesort(double a[], int length);
 long double * ldbubblesort(long double a[], int length);
+/* Rounding functions */
+int flfloor(float n);
+int dfloor(double n);
+int ldfloor(long double n);
+int flceil(float n);
+int dceil(double n);
+int ldceil(long double n);
 /* Misc */
 int order_of_magnitude(double n);
 double inv(double n);
@@ -114,6 +121,13 @@ int xor(int a, int b);
 int xnor(int a, int b);
 int implies(int a, int b);
 int iff(int a, int b);
+/* Periodic Funtions */
+double sawtooth(double a);
+double square(double a);
+double triangle(double a);
+int sign(double a);
+/* Number Theory */
+int isprime(int a);
 
 /* Binary Comparators */
 char chmin(char a, char b)
@@ -190,7 +204,8 @@ long double ldmax(long double a, long double b)
 char chmina(char a[], int length)
 {
 	char min = a[0];
-	for(int i = 0; i < length; i++)
+	int i;
+	for(i = 0; i < length; i++)
 	{
 		min = chmin(min, a[i]);
 	}
@@ -200,7 +215,8 @@ char chmina(char a[], int length)
 int imina(int a[], int length)
 {
 	int min = a[0];
-	for(int i = 0; i < length; i++)
+	int i;
+	for(i = 0; i < length; i++)
 	{
 		min = imin(min, a[i]);
 	}
@@ -210,7 +226,8 @@ int imina(int a[], int length)
 short smina(short a[], int length)
 {
 	short min = a[0];
-	for(int i = 0; i < length; i++)
+	int i;
+	for(i = 0; i < length; i++)
 	{
 		min = smin(min, a[i]);
 	}
@@ -220,7 +237,8 @@ short smina(short a[], int length)
 long lmina(long a[], int length)
 {
 	long min = a[0];
-	for(int i = 0; i < length; i++)
+	int i;
+	for(i = 0; i < length; i++)
 	{
 		min = lmin(min, a[i]);
 	}
@@ -230,7 +248,8 @@ long lmina(long a[], int length)
 float flmina(float a[], int length)
 {
 	float min = a[0];
-	for(int i = 0; i < length; i++)
+	int i;
+	for(i = 0; i < length; i++)
 	{
 		min = flmin(min, a[i]);
 	}
@@ -240,7 +259,8 @@ float flmina(float a[], int length)
 double dmina(double a[], int length)
 {
 	double min = a[0];
-	for(int i = 0; i < length; i++)
+	int i;
+	for(i = 0; i < length; i++)
 	{
 		min = dmin(min, a[i]);
 	}
@@ -250,7 +270,8 @@ double dmina(double a[], int length)
 long double ldmina(long double a[], int length)
 {
 	long double min = a[0];
-	for(int i = 0; i < length; i++)
+	int i;
+	for(i = 0; i < length; i++)
 	{
 		min = ldmin(min, a[i]);
 	}
@@ -260,7 +281,8 @@ long double ldmina(long double a[], int length)
 char chmaxa(char a[], int length)
 {
 	char max = a[0];
-	for(int i = 0; i < length; i++)
+	int i;
+	for(i = 0; i < length; i++)
 	{
 		max = chmax(max, a[i]);
 	}
@@ -270,7 +292,8 @@ char chmaxa(char a[], int length)
 int imaxa(int a[], int length)
 {
 	int max = a[0];
-	for(int i = 0; i < length; i++)
+	int i;
+	for(i = 0; i < length; i++)
 	{
 		max = imax(max, a[i]);
 	}
@@ -280,7 +303,8 @@ int imaxa(int a[], int length)
 short smaxa(short a[], int length)
 {
 	short max = a[0];
-	for(int i = 0; i < length; i++)
+	int i;
+	for(i = 0; i < length; i++)
 	{
 		max = smax(max, a[i]);
 	}
@@ -290,7 +314,8 @@ short smaxa(short a[], int length)
 long lmaxa(long a[], int length)
 {
 	long max = a[0];
-	for(int i = 0; i < length; i++)
+	int i;
+	for(i = 0; i < length; i++)
 	{
 		max = lmax(max, a[i]);
 	}
@@ -300,7 +325,8 @@ long lmaxa(long a[], int length)
 float flmaxa(float a[], int length)
 {
 	float max = a[0];
-	for(int i = 0; i < length; i++)
+	int i;
+	for(i = 0; i < length; i++)
 	{
 		max = flmax(max, a[i]);
 	}
@@ -310,7 +336,8 @@ float flmaxa(float a[], int length)
 double dmaxa(double a[], int length)
 {
 	double max = a[0];
-	for(int i = 0; i < length; i++)
+	int i;
+	for(i = 0; i < length; i++)
 	{
 		max = dmax(max, a[i]);
 	}
@@ -320,7 +347,8 @@ double dmaxa(double a[], int length)
 long double ldmaxa(long double a[], int length)
 {
 	long double max = a[0];
-	for(int i = 0; i < length; i++)
+	int i;
+	for(i = 0; i < length; i++)
 	{
 		max = ldmax(max, a[i]);
 	}
@@ -331,9 +359,11 @@ long double ldmaxa(long double a[], int length)
 char * chbubblesort(char a[], int length)
 {
 	char temp;
-	for(int i = 0; i < length; i++)
+	int i;
+	int j;
+	for(i = 0; i < length; i++)
 	{
-		for(int j = 1; j < length - i; j++)
+		for(j = 1; j < length - i; j++)
 		{
 			if(a[j] < a[j - 1])
 			{
@@ -349,9 +379,11 @@ char * chbubblesort(char a[], int length)
 int * ibubblesort(int a[], int length)
 {
 	int temp;
-	for(int i = 0; i < length; i++)
+	int i;
+	int j;
+	for(i = 0; i < length; i++)
 	{
-		for(int j = 1; j < length - i; j++)
+		for(j = 1; j < length - i; j++)
 		{
 			if(a[j] < a[j - 1])
 			{
@@ -367,9 +399,11 @@ int * ibubblesort(int a[], int length)
 short * sbubblesort(short a[], int length)
 {
 	short temp;
-	for(int i = 0; i < length; i++)
+	int i;
+	int j;
+	for(i = 0; i < length; i++)
 	{
-		for(int j = 1; j < length - i; j++)
+		for(j = 1; j < length - i; j++)
 		{
 			if(a[j] < a[j - 1])
 			{
@@ -385,9 +419,11 @@ short * sbubblesort(short a[], int length)
 long * lbubblesort(long a[], int length)
 {
 	long temp;
-	for(int i = 0; i < length; i++)
+	int i;
+	int j;
+	for(i = 0; i < length; i++)
 	{
-		for(int j = 1; j < length - i; j++)
+		for(j = 1; j < length - i; j++)
 		{
 			if(a[j] < a[j - 1])
 			{
@@ -403,9 +439,11 @@ long * lbubblesort(long a[], int length)
 float * flbubblesort(float a[], int length)
 {
 	float temp;
-	for(int i = 0; i < length; i++)
+	int i;
+	int j;
+	for(i = 0; i < length; i++)
 	{
-		for(int j = 1; j < length - i; j++)
+		for(j = 1; j < length - i; j++)
 		{
 			if(a[j] < a[j - 1])
 			{
@@ -421,9 +459,11 @@ float * flbubblesort(float a[], int length)
 double * dbubblesort(double a[], int length)
 {
 	double temp;
-	for(int i = 0; i < length; i++)
+	int i;
+	int j;
+	for(i = 0; i < length; i++)
 	{
-		for(int j = 1; j < length - i; j++)
+		for(j = 1; j < length - i; j++)
 		{
 			if(a[j] < a[j - 1])
 			{
@@ -439,9 +479,11 @@ double * dbubblesort(double a[], int length)
 long double * ldbubblesort(long double a[], int length)
 {
 	long double temp;
-	for(int i = 0; i < length; i++)
+	int i;
+	int j;
+	for(i = 0; i < length; i++)
 	{
-		for(int j = 1; j < length - i; j++)
+		for(j = 1; j < length - i; j++)
 		{
 			if(a[j] < a[j - 1])
 			{
@@ -453,12 +495,45 @@ long double * ldbubblesort(long double a[], int length)
 	}
 	return a;
 }
+
+/* Rounding Functions */
+int flfloor(float n)
+{
+	return (int)(n - (float)mod(n,1));
+}
+
+int dfloor(double n)
+{
+	return (int)(n - mod(n,1));
+}
+
+int ldfloor(long double n)
+{
+	return (int)(n - mod(n,1));
+}
+
+int flceil(float n)
+{
+	return flfloor(n) + 1;
+}
+
+int dceil(double n)
+{
+	return dceil(n) + 1;
+}
+
+int ldceil(long double n)
+{
+	return ldfloor(n) + 1;
+}
+
 /* Miscellaneous Functions */
 int order_of_magnitude(double n)
 {
 	int int_n = (int) n;
 	int prod = 1;
-	for(int i = 0; ;i++)
+	int i;
+	for(i = 0; ;i++)
 	{
 		prod *= 0.1;
 		if(int_n * prod < 10)
@@ -490,7 +565,8 @@ unsigned long fact(unsigned int a)
 		return 1;
 	}
 	unsigned long prod = 1;
-	for(unsigned int i = 2; i <= a; i++)
+	unsigned int i;
+	for(i = 2; i <= a; i++)
 	{
 		prod *= i;
 	}
@@ -502,14 +578,16 @@ long ffact(int a)
 	if(a % 2 == 0)
 	{
 		long prod = 1;
-		for(int i = 2; i <= a; i += 2)
+		int i;
+		for(i = 2; i <= a; i += 2)
 		{
 			prod *= i;
 		}
 		return prod;
 	}
 	long prod = 1;
-	for(int i = 3; i <= a; i += 2)
+	int i;
+	for(i = 3; i <= a; i += 2)
 	{
 		prod *= i;
 	}
@@ -546,7 +624,8 @@ double dpow(double a, int b)
 		neg = true;
 		b *= -1;
 	}
-	for(int i = 0; i < b; i++)
+	int i;
+	for(i = 0; i < b; i++)
 	{
 		prod *= a;
 	}
@@ -596,7 +675,8 @@ double sqrt(double n)
 double exp(double n)
 {
 	double sum = 0;
-	for(int i = 0; i <= 50; i++)
+	int i;
+	for(i = 0; i <= 50; i++)
 	{
 		sum += dpow(n, i)/fact(i);
 	}
@@ -606,7 +686,8 @@ double exp(double n)
 double ln(double n)
 {
 	double sum = 0;
-	for(int i = 1; i <= 50; i++)
+	int i;
+	for(i = 1; i <= 50; i++)
 	{
 		 sum += dpow(-1,i)*dpow(n-1,i)/(double)i;
 	}
@@ -724,7 +805,8 @@ double sin(double n)
 		neg = true;
 	}
 	double sum = 0;
-	for(int i = 1; i <= 30; i++)
+	int i;
+	for(i = 1; i <= 30; i++)
 	{
 		sum += dpow(-1,i-1) * (dpow(n,2*i-1))/((double)fact(2*i-1));
 	}
@@ -780,7 +862,8 @@ double csc(double n)
 double sinh(double n)
 {
 	double sum = 0;
-	for(int i = 0; i <= 30; i++)
+	int i;
+	for(i = 0; i <= 30; i++)
 	{
 		sum += dpow(n,2*i+1)/fact(2*i+1);
 	}
@@ -790,7 +873,8 @@ double sinh(double n)
 double cosh(double n)
 {
 	double sum = 0;
-	for(int i = 0; i <= 30; i++)
+	int i;
+	for(i = 0; i <= 30; i++)
 	{
 		sum += dpow(n,2*i)/fact(2*i);
 	}
@@ -837,7 +921,8 @@ double csch(double n)
 double arcsin(double n)
 {
 	double sum = n;
-	for(int i = 1; i < 30; i++)
+	int i;
+	for(i = 1; i < 30; i++)
 	{
 		sum += (double)ffact(2*i - 1) * (dpow(n,2*i+1))/((double) ffact(2*i)*(2*i + 1));
 	}
@@ -862,7 +947,8 @@ double aoffcos(double n, int offset)
 double arctan(double n)
 {
 	double sum = 0;
-	for(int i = 0; i <= 30; i++)
+	int i;
+	for(i = 0; i <= 30; i++)
 	{
 		sum += dpow(-1,i) * dpow(n,2*i+1) / (2*i + 1);
 	}
@@ -922,7 +1008,8 @@ double arctanh(double n)
 		return NaN;
 	}
 	double sum = 0;
-	for(int i = 1; i < 100; i++)
+	int i;
+	for(i = 1; i < 100; i++)
 	{
 		sum += dpow(n,2*i-1)/(2*i-1);
 	}
@@ -1033,4 +1120,64 @@ int implies(int a, int b)
 int iff(int a, int b)
 {
 	return xnor(a,b);
+}
+
+/* Periodic Functions */
+double sawtooth(double a)
+{
+	return a - dfloor(a);
+}
+
+double square(double a)
+{
+	if(dfloor(mod(a,2)) == 1)
+	{
+		return -1;
+	}
+	return 1;
+}
+
+double triangle(double a)
+{
+	return dabs(mod(a,4)-2) - 1;
+}
+
+int sign(double a)
+{
+	if(a < 0)
+	{
+		return -1;
+	}
+	if(a > 0)
+	{
+		return 1;
+	}
+	return 0;
+}
+
+/* Number Theory */
+int isprime(int n)
+{
+	if(n == 1)
+	{
+		return false;
+	}
+	if(n == 2 || n == 3)
+	{
+		return true;
+	}
+	if(n % 2 == 0 || n % 3 == 0)
+	{
+		return false;
+	}
+	int i = 5;
+	while(i*i <= n)
+	{
+		if(n % i == 0 || n % (i+2) == 0)
+		{
+			return false;
+		}
+		i += 6;
+	}
+	return true;
 }
